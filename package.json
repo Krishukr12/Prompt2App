@@ -1,5 +1,5 @@
 {
-  "name": "Prompt2App",
+  "name": "prompt2app",
   "private": true,
   "scripts": {
     "build": "turbo run build",
