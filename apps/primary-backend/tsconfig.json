@@ -2,6 +2,7 @@
   "extends":"@repo/typescript-config/base.json",
   "compilerOptions": {
     "moduleResolution": "nodenext",
+    "strict": true,
     "esModuleInterop": true,
     "outDir": "./dist",
     "rootDir": "./src",

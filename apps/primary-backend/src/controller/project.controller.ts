@@ -7,7 +7,7 @@ import { StatusCodes } from "http-status-codes";
 export const createProject = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   res.send("working fine");
 };
@@ -15,7 +15,7 @@ export const createProject = (
 export const getAllProjects = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { userId } = req.body;
   try {
@@ -34,7 +34,7 @@ export const getAllProjects = async (
   } catch (error) {
     createError(
       StatusCodes.INTERNAL_SERVER_ERROR,
-      (error as Error).message ?? "something went wrong"
+      (error as Error).message ?? "something went wrong",
     );
   }
 };
