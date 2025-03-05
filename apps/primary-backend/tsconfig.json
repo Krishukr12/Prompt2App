@@ -1,0 +1,15 @@
+{
+  "extends":"@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "paths": {
+      "@utils/*":["./utils/*","./src/utils/*"],
+      "@router/*":["./router/*","./src/router/*"],
+      "@controller/*":["./controller/*","./src/controller/*"],
+      "@middleware/*":["./middleware/*","./src/middleware/*"]
+    }
+  }
+}
