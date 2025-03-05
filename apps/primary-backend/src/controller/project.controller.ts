@@ -23,7 +23,7 @@ export const getAllProjects = async (
       where: { id: userId },
     });
     if (!response) {
-      next(createError(StatusCodes.BAD_GATEWAY, "something went wrong"));
+      next(createError(StatusCodes.BAD_GATEWAY, "internal server error"));
       return;
     }
     res.status(StatusCodes.OK).send({
@@ -33,7 +33,7 @@ export const getAllProjects = async (
     });
   } catch (error) {
     createError(
-      StatusCodes.BAD_GATEWAY,
+      StatusCodes.INTERNAL_SERVER_ERROR,
       (error as Error).message ?? "something went wrong"
     );
   }
