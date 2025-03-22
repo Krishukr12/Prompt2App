@@ -1,35 +1,34 @@
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { LucideProps } from "lucide-react";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { ReactNode } from "react";
 
-export const FeatureCard = ({
-  title,
-  description,
-  icon: Icon,
-  delay = 0,
-}: {
+interface IFeatureCard {
   title: string;
   description: string;
-  icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-  >;
-  delay: number;
-}) => {
+  idx: number;
+  icon: ReactNode;
+}
+
+const FeatureCard = ({ title, description, idx, icon }: IFeatureCard) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay, duration: 0.5 }}
-      viewport={{ once: true }}
-      className="bg-gray-800 p-5 rounded-xl border border-gray-700 hover:border-indigo-500 transition-all group shadow-md text-center"
+      key={idx}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: idx * 0.1 + 0.3 }}
+      className={cn(
+        "p-4 rounded-xl bg-white border border-slate-200",
+        "hover:border-sky-300 hover:shadow-lg transition-all",
+        "flex items-start gap-4 group cursor-pointer"
+      )}
     >
-      <div className="flex justify-center mb-3">
-        <div className="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center group-hover:bg-indigo-500/30 transition-colors">
-          <Icon className="w-6 h-6 text-indigo-400" />
-        </div>
+      <div className="p-2 rounded-lg bg-sky-50">{icon}</div>
+      <div>
+        <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
+        <p className="text-slate-600 text-sm">{description}</p>
       </div>
-      <h3 className="text-lg font-semibold text-white">{title}</h3>
-      <p className="text-gray-400 text-sm">{description}</p>
     </motion.div>
   );
 };
+
+export default FeatureCard;

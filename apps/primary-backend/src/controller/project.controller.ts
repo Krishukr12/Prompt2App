@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-
 import { prismaClient } from "@repo/db/client";
 import { createError } from "@utils/createError";
 import { StatusCodes } from "http-status-codes";
@@ -7,15 +6,16 @@ import { StatusCodes } from "http-status-codes";
 export const createProject = (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
+  console.log(req.userId);
   res.send("working fine");
 };
 
 export const getAllProjects = async (
   req: Request,
   res: Response,
-  next: NextFunction,
+  next: NextFunction
 ) => {
   const { userId } = req.body;
   try {
@@ -34,7 +34,7 @@ export const getAllProjects = async (
   } catch (error) {
     createError(
       StatusCodes.INTERNAL_SERVER_ERROR,
-      (error as Error).message ?? "something went wrong",
+      (error as Error).message ?? "something went wrong"
     );
   }
 };

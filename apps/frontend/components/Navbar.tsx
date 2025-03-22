@@ -5,9 +5,10 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
-
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 export const Navbar = () => {
   return (
@@ -18,12 +19,16 @@ export const Navbar = () => {
           animate={{ opacity: 1 }}
           className="flex items-center gap-2"
         >
-          <div className="w-8 h-8 bg-gradient-to-r from-sky-500 to-teal-500 rounded-lg" />
-          <span className="text-xl font-semibold text-slate-800">
-            prompt2app
-          </span>
+          <Link href="/">
+            <Image
+              src="/prompt2app.png"
+              alt="prompt2app logo"
+              width={80}
+              height={10}
+            ></Image>
+          </Link>
         </motion.div>
-        <header>
+        <header className="flex gap-2.5">
           <SignedOut>
             <Button
               variant="outline"
@@ -31,12 +36,10 @@ export const Navbar = () => {
             >
               <SignInButton />
             </Button>
-
             <Button className="bg-sky-500 text-white hover:bg-sky-600 transition-all cursor-pointer">
               <SignUpButton />
             </Button>
           </SignedOut>
-
           <SignedIn>
             <UserButton />
           </SignedIn>
