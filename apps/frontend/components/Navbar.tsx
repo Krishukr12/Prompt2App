@@ -5,32 +5,43 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+
 import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full flex justify-between items-center px-6 md:px-10 py-4 bg-gray-900 shadow-md border-b border-gray-800">
-      <h1 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500 font-poppins">
-        prompt2app
-      </h1>
-      <header className="flex justify-end items-center p-4 gap-4 h-10 bg-transparent">
-        <SignedOut>
-          <Button
-            variant="outline"
-            className="border  border-white text-black hover:bg-white transition-all"
-          >
-            <SignInButton />
-          </Button>
+    <nav className="px-6 py-4 border-b border-slate-200 bg-white/80 backdrop-blur-sm">
+      <div className="flex items-center justify-between max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex items-center gap-2"
+        >
+          <div className="w-8 h-8 bg-gradient-to-r from-sky-500 to-teal-500 rounded-lg" />
+          <span className="text-xl font-semibold text-slate-800">
+            prompt2app
+          </span>
+        </motion.div>
+        <header>
+          <SignedOut>
+            <Button
+              variant="outline"
+              className="border  border-white text-black hover:bg-white transition-all cursor-pointer"
+            >
+              <SignInButton />
+            </Button>
 
-          <Button className="bg-blue-600 text-white hover:bg-blue-500 transition-all">
-            <SignUpButton />
-          </Button>
-        </SignedOut>
+            <Button className="bg-sky-500 text-white hover:bg-sky-600 transition-all cursor-pointer">
+              <SignUpButton />
+            </Button>
+          </SignedOut>
 
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </header>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </header>
+      </div>
     </nav>
   );
 };

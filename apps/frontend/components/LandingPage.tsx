@@ -1,64 +1,103 @@
 "use client";
 
-import { Send } from "lucide-react";
+import { Rocket, Sparkles, Smartphone, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { FeatureCard } from "./FeatureCard";
-import { features } from "@/const/feature";
+import { cn } from "@/lib/utils";
 import { Navbar } from "./Navbar";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-gray-900 to-black text-white">
+    <div className="h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col">
       <Navbar />
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 max-w-7xl mx-auto">
+        <div className="flex flex-col justify-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-10"
+          >
+            <h1 className="text-4xl font-bold text-slate-800">
+              Transform Ideas Into
+              <span className="block bg-gradient-to-r from-sky-500 to-teal-500 bg-clip-text text-transparent">
+                Production-Ready Apps
+              </span>
+            </h1>
 
-      <section className="flex flex-col flex-grow items-center text-center px-6 mt-24 md:mt-28 w-full max-w-6xl mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500"
-        >
-          AI App Builder
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-md md:text-lg text-gray-300 mt-3 max-w-3xl"
-        >
-          Just describe your idea, and our AI will turn it into a fully
-          functional app!
-        </motion.p>
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              className="space-y-4"
+            >
+              <Textarea
+                placeholder="Describe your application requirements..."
+                className="min-h-[150px] text-lg p-6 rounded-xl border-2 border-slate-200 bg-white shadow-sm focus:border-sky-300 focus:ring-0"
+              />
+              <motion.div whileHover={{ scale: 1.02 }}>
+                <Button className="w-full py-6 text-lg bg-sky-500 hover:bg-sky-600 text-white rounded-xl shadow-lg hover:shadow-sky-100 transition-all">
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Generate Application
+                </Button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-6 w-full max-w-3xl flex flex-col md:flex-col gap-5"
-        >
-          <Textarea
-            placeholder="Describe your app idea..."
-            className="outline-none w-full md:flex-grow h-24 md:h-32 text-lg p-4 bg-gray-800 border border-gray-700 rounded-lg shadow-md"
-          />
-          <Button className=" cursor-pointer w-full md:w-3xs py-3 px-3 text-lg font-semibold bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 flex items-center gap-2">
-            <Send className="w-5 h-5" />
-            Generate App
-          </Button>
-        </motion.div>
-      </section>
+        <div className="flex flex-col justify-center">
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              {
+                icon: <Rocket className="w-6 h-6 text-sky-500" />,
+                title: "Instant Deployment",
+                description: "Cloud-ready infrastructure setup in minutes",
+              },
+              {
+                icon: <Sparkles className="w-6 h-6 text-sky-500" />,
+                title: "AI Architecture",
+                description: "Optimized technical design and patterns",
+              },
+              {
+                icon: <Smartphone className="w-6 h-6 text-sky-500" />,
+                title: "Cross-Platform",
+                description: "iOS, Android & Web simultaneous build",
+              },
+              {
+                icon: <Code2 className="w-6 h-6 text-sky-500" />,
+                title: "Clean Codebase",
+                description: "TypeScript & Modern Framework standards",
+              },
+            ].map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1 + 0.3 }}
+                className={cn(
+                  "p-4 rounded-xl bg-white border border-slate-200",
+                  "hover:border-sky-300 hover:shadow-lg transition-all",
+                  "flex items-start gap-4 group cursor-pointer"
+                )}
+              >
+                <div className="p-2 rounded-lg bg-sky-50">{feature.icon}</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-slate-800">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm">
+                    {feature.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 px-4 md:px-0 mb-7"
-      >
-        {features.map((feature, index) => (
-          <FeatureCard key={index} {...feature} delay={index * 0.2} />
-        ))}
-      </motion.section>
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-sky-100 rounded-full blur-3xl opacity-50" />
+        <div className="absolute top-1/2 right-1/3 w-48 h-48 bg-teal-100 rounded-full blur-3xl opacity-50" />
+      </div>
     </div>
   );
 }
