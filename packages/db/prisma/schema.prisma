@@ -9,14 +9,51 @@ datasource db {
 
 model User {
   id        String   @unique @default(uuid())
-  email     String
+  email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
+enum ProjectType {
+  REACT_NATIVE
+  NEXTJS
+  REACT
+}
+
 model Project {
-  id          String   @unique @default(uuid())
+  id          String      @unique @default(uuid())
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  prompt      Prompt[]
+  actions     Action[]
+  type        ProjectType @default(NEXTJS)
+  userId      String
+}
+
+enum PromptType {
+  USER
+  SYSTEM
+}
+
+model Prompt {
+  id        String     @id @default(uuid())
+  content   String
+  type      PromptType
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  project   Project    @relation(fields: [projectId], references: [id])
+  projectId String
+  action    Action[]
+}
+
+model Action {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  content   String
+  promptId  String
+  prompt    Prompt   @relation(fields: [promptId], references: [id])
 }
