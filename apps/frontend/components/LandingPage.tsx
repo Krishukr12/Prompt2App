@@ -11,11 +11,8 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col overflow-hidden">
       <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.1))]" />
-
       <Navbar />
-
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 sm:px-8 md:px-12 py-12 max-w-7xl mx-auto relative">
-        {/* Left Column */}
         <div className="flex flex-col justify-center space-y-8 z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -62,7 +59,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        {/* Right Column */}
         <div className="flex flex-col justify-center z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -100,7 +96,6 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Background Elements */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute top-[20%] left-[15%] w-72 h-72 bg-gradient-to-r from-sky-500/20 to-teal-500/20 rounded-full blur-3xl animate-float" />
         <div className="absolute top-[50%] right-[20%] w-64 h-64 bg-teal-500/20 rounded-full blur-3xl animate-float-delayed" />
