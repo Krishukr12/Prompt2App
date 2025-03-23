@@ -3,8 +3,6 @@ import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 
-const JWT_PUBLIC_KEY = "";
-
 export const isUserAuthenticated = (
   req: Request,
   res: Response,
@@ -18,7 +16,7 @@ export const isUserAuthenticated = (
     return;
   }
 
-  const decoded = jwt.verify(token, JWT_PUBLIC_KEY, {
+  const decoded = jwt.verify(token, process.env.JWT_PUBLIC_KEY!, {
     algorithms: ["RS256"],
   });
 
