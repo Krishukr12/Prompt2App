@@ -127,6 +127,36 @@ importers:
         specifier: ^4.19.3
         version: 4.19.3
 
+  apps/worker:
+    dependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/cors':
+        specifier: ^2.8.17
+        version: 2.8.17
+      '@types/express':
+        specifier: ^5.0.0
+        version: 5.0.0
+      cors:
+        specifier: ^2.8.5
+        version: 2.8.5
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
+      express:
+        specifier: ^4.21.2
+        version: 4.21.2
+      http-status-codes:
+        specifier: ^2.3.0
+        version: 2.3.0
+      tsx:
+        specifier: ^4.19.3
+        version: 4.19.3
+
   packages/db:
     dependencies:
       '@prisma/client':
