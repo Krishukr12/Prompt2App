@@ -31,12 +31,12 @@ To get started with Prompt2App, follow these steps:
 
 2. **Install dependencies**:
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Start the development server**:
    ```bash
-   npm start
+   pnpm start
    ```
 
 ## Usage
@@ -71,5 +71,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For questions or feedback, please contact:
 
-- **Your Name**: [your.email@example.com](mailto:your.email@example.com)
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Your Name**: [your.email@example.com](mailto:krishankumarsafi7@gmail.com)
+- **GitHub**: [yourusername](https://github.com/krishukr12)
