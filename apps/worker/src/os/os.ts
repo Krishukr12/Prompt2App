@@ -1,64 +1,31 @@
+import path from "path";
 
-import { prismaClient } from "@repo/db/client";
-import { RelayWebsocket } from "@ws/ws";
+import { existsSync, mkdirSync, writeFile } from "fs";
+import { writeFile as writeFileAsync } from "fs/promises";
+import { spawnSync } from "child_process";
 
+const BASE_WORKER_DIR = process.env.BASE_WORKER_DIR || "/tmp/prompt2app-worker";
 
-function getBaseWorkerDir(type: "NEXTJS" | "REACT_NATIVE") {
-    if (type === "NEXTJS") {
-        return "/tmp/next-app";
-    }
-    return "/tmp/mobile-app";
+if (!existsSync(BASE_WORKER_DIR)) {
+  mkdirSync(BASE_WORKER_DIR, { recursive: true });
 }
 
+export async function onFileUpdate(filePath: string, fileContent: string) {
+  console.log(`File updated : ${filePath}`);
+  await writeFileAsync(path.join(BASE_WORKER_DIR, filePath), fileContent);
+}
 
-export async function onFileUpdate(filePath: string, fileContent: string, projectId: string, promptId: string, type: "NEXTJS" | "REACT_NATIVE") {
-    await prismaClient.action.create({
-        data: {
-            projectId,
-            promptId,
-            content: `Updated file ${filePath}`
-        },
+export function onShellCommand(shellCommand: string) {
+  const commands = shellCommand.split("&&");
+
+  for (const command of commands) {
+    console.log(`Running command: ${command}`);
+    const result = spawnSync(command.trim(), {
+      shell: true,
+      cwd: BASE_WORKER_DIR,
+      encoding: "utf-8",
     });
-
-    RelayWebsocket.getInstance().send(JSON.stringify({
-        event: "admin",
-        data: {
-            type: "update-file",
-            content: fileContent,
-            path: `${getBaseWorkerDir(type)}/${filePath}`
-        }
-    }))
-}
-
-export async function onShellCommand(shellCommand: string, projectId: string, promptId: string) {
-    const commands = shellCommand.split("&&");
-    for (const command of commands) {
-        console.log(`Running command: ${command}`);
-
-        ws.send(JSON.stringify({
-            event: "admin",
-            data: {
-                type: "command",
-                content: command
-            }
-        }))
-
-        await prismaClient.action.create({
-            data: {
-                projectId,
-                promptId,
-                content: `Ran command: ${command}`,
-            },
-        });
-    }
-}
-
-
-export function onPromptEnd(promptId: string) {
-    ws.send(JSON.stringify({
-        event: "admin",
-        data: {
-            type: "prompt-end"
-        }
-    }))
+    console.log(result.stdout);
+    console.error(result.stderr);
+  }
 }
