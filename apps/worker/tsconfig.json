@@ -13,7 +13,8 @@
         "@middleware/*":["./middleware/*","./src/middleware/*"],
         "@system/*":["./system/*","./src/system/*"],
         "@ws/*":["./ws/*","./src/ws/*"],
-        "@types/*":["./types/*","./src/types/*"]
+        "@types/*":["./types/*","./src/types/*"],
+        "@os/*":["./os/*","./src/os/*"]
       }
     }
   }
