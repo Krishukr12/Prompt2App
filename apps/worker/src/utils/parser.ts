@@ -1,5 +1,8 @@
+// processor !!!!
+
 export class ArtifactProcessor {
   public currentArtifact: string;
+  
   private onFileContent: (filePath: string, fileContent: string) => void;
   private onShellCommand: (shellCommand: string) => void;
 
