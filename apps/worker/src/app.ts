@@ -3,9 +3,6 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 
-import { prismaClient } from "@repo/db/client";
-import { systemPrompt } from "@system/systemPrompt";
-import { ArtifactProcessor } from "@utils/parser";
 import { promptRouter } from "@router/prompt.routes";
 import { globalErrorHandler } from "@utils/globalErrorHandler";
 
