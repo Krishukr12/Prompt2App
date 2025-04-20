@@ -6,7 +6,7 @@ import { prismaClient } from "@repo/db/client";
 export const createProject = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const { prompt, type } = req.body;
@@ -25,8 +25,8 @@ export const createProject = async (
       next(
         createError(
           StatusCodes.INTERNAL_SERVER_ERROR,
-          "error while crating project"
-        )
+          "error while crating project",
+        ),
       );
     }
 
@@ -38,8 +38,8 @@ export const createProject = async (
     next(
       createError(
         StatusCodes.INTERNAL_SERVER_ERROR,
-        (error as Error).message ?? "something went wrong"
-      )
+        (error as Error).message ?? "something went wrong",
+      ),
     );
   }
 };
@@ -47,7 +47,7 @@ export const createProject = async (
 export const getAllProjects = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const { userId } = req.body;
@@ -66,7 +66,7 @@ export const getAllProjects = async (
   } catch (error) {
     createError(
       StatusCodes.INTERNAL_SERVER_ERROR,
-      (error as Error).message ?? "something went wrong"
+      (error as Error).message ?? "something went wrong",
     );
   }
 };
@@ -74,7 +74,7 @@ export const getAllProjects = async (
 export const getAllPrompts = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const userId = req.userId;
@@ -93,8 +93,8 @@ export const getAllPrompts = async (
       next(
         createError(
           StatusCodes.INTERNAL_SERVER_ERROR,
-          "error while creating prompts"
-        )
+          "error while creating prompts",
+        ),
       );
     }
     res.status(StatusCodes.OK).send({
@@ -105,8 +105,8 @@ export const getAllPrompts = async (
     next(
       createError(
         StatusCodes.INTERNAL_SERVER_ERROR,
-        (error as Error).message ?? "something went wrong"
-      )
+        (error as Error).message ?? "something went wrong",
+      ),
     );
   }
 };

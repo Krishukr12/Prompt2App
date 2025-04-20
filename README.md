@@ -24,12 +24,14 @@ Prompt2App is a cutting-edge web application that transforms natural language pr
 To get started with Prompt2App, follow these steps:
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/yourusername/Prompt2App.git
    cd Prompt2App
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```

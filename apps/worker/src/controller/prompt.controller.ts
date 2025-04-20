@@ -13,7 +13,7 @@ import { onFileUpdate, onShellCommand } from "@os/os";
 export const postPrompt = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const { prompt, projectId } = req.body;
   const aiClient = new Anthropic({
@@ -51,7 +51,7 @@ export const postPrompt = async (
     let artifactProcessor = new ArtifactProcessor(
       "",
       onFileUpdate,
-      onShellCommand
+      onShellCommand,
     );
 
     let artifact = "";
@@ -82,7 +82,7 @@ export const postPrompt = async (
       });
   } catch (error) {
     next(
-      createError(StatusCodes.INTERNAL_SERVER_ERROR, "internal server error")
+      createError(StatusCodes.INTERNAL_SERVER_ERROR, "internal server error"),
     );
   }
 };

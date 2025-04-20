@@ -1,4 +1,8 @@
-import { createProject, getAllProjects, getAllPrompts } from "@controller/project.controller";
+import {
+  createProject,
+  getAllProjects,
+  getAllPrompts,
+} from "@controller/project.controller";
 import { Router } from "express";
 
 export const projectRouter: Router = Router();

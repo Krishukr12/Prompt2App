@@ -2,14 +2,14 @@
 
 export class ArtifactProcessor {
   public currentArtifact: string;
-  
+
   private onFileContent: (filePath: string, fileContent: string) => void;
   private onShellCommand: (shellCommand: string) => void;
 
   constructor(
     currentArtifact: string,
     onFileContent: (filePath: string, fileContent: string) => void,
-    onShellCommand: (shellCommand: string) => void
+    onShellCommand: (shellCommand: string) => void,
   ) {
     this.currentArtifact = currentArtifact;
     this.onFileContent = onFileContent;
@@ -23,10 +23,10 @@ export class ArtifactProcessor {
   parse() {
     const lines = this.currentArtifact.split("\n");
     const latestActionStart = lines.findIndex((line) =>
-      line.includes("<boltAction type=")
+      line.includes("<boltAction type="),
     );
     const latestActionEnd = lines.findIndex((line) =>
-      line.includes("</boltAction>")
+      line.includes("</boltAction>"),
     );
 
     if (
@@ -40,7 +40,7 @@ export class ArtifactProcessor {
     const actionLine: string = lines[latestActionStart] ?? "";
     const latestActionContentArray = lines.slice(
       latestActionStart,
-      latestActionEnd + 1
+      latestActionEnd + 1,
     );
 
     try {

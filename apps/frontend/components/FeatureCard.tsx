@@ -19,7 +19,7 @@ const FeatureCard = ({ title, description, idx, icon }: IFeatureCard) => {
       className={cn(
         "p-4 rounded-xl bg-white border border-slate-200",
         "hover:border-sky-300 hover:shadow-lg transition-all",
-        "flex items-start gap-4 group cursor-pointer"
+        "flex items-start gap-4 group cursor-pointer",
       )}
     >
       <div className="p-2 rounded-lg bg-sky-50">{icon}</div>

@@ -21,7 +21,7 @@ export const Prompt = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     );
     setPrompt("");
     console.log(response);

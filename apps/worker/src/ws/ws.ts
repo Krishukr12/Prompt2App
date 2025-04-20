@@ -1,25 +1,23 @@
-
-
-
- type MessagePayload = {
-    event: "subscribe";
-    data?: null;
-} | {
-    event: "admin";
-    data: {
-        type: "command" | "update-file" | "prompt-start" | "prompt-end"
+type MessagePayload =
+  | {
+      event: "subscribe";
+      data?: null;
+    }
+  | {
+      event: "admin";
+      data: {
+        type: "command" | "update-file" | "prompt-start" | "prompt-end";
         content: string;
         path?: string;
+      };
+      callbackId?: string;
     };
-    callbackId?: string;
-}
 
- type VscodeMessagePayload = {
-    event: "vscode_diff";
-    diff: string;
-    callbackId: string;
-}
-
+type VscodeMessagePayload = {
+  event: "vscode_diff";
+  diff: string;
+  callbackId: string;
+};
 
 export class RelayWebsocket {
   private static instance: RelayWebsocket;
@@ -41,7 +39,7 @@ export class RelayWebsocket {
       this.send(
         JSON.stringify({
           event: "api_subscribe",
-        })
+        }),
       );
     };
   }
@@ -49,7 +47,7 @@ export class RelayWebsocket {
   static getInstance() {
     if (!RelayWebsocket.instance) {
       RelayWebsocket.instance = new RelayWebsocket(
-        process.env.WS_RELAYER_URL || "ws://ws-relayer:9093"
+        process.env.WS_RELAYER_URL || "ws://ws-relayer:9093",
       );
     }
     return RelayWebsocket.instance;
@@ -61,7 +59,7 @@ export class RelayWebsocket {
 
   sendAndAwaitResponse(
     message: any,
-    callbackId: string
+    callbackId: string,
   ): Promise<VscodeMessagePayload> {
     this.ws.send(JSON.stringify({ ...message, callbackId }));
 
